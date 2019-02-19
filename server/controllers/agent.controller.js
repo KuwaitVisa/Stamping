@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+var springedge = require('springedge');
 const Agent = mongoose.model('Agent');
 
 module.exports.agent = (req, res, next) => {
@@ -15,12 +15,21 @@ module.exports.agent = (req, res, next) => {
     agent.save((err, doc) => {
         if (!err)
             res.send(doc);
-        else {
-            if (err.code == 11000)
-                res.status(422).send(['Duplicate agentname entry found.']);
-            else
-                return next(err);
-        }
+            var params = {
+                'sender': 'SRINTL',
+                'apikey': '555mkk920953b044o18bzi7p6q3o5nwd2i',
+                'to': [agent.MobileNumber  //Moblie Numbers 
+                ],
+                'message': 'Dear Customer, Welcome to Sri Sairam Travels. Your name has been added as our agent successfully.',
+                'format': 'json'
+              };
+            springedge.messages.send(params, 5000, function (err, response) {
+                if (err) {
+                  return console.log(err);
+                }
+                console.log(response);
+              });
+        
 
     });
 

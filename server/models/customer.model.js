@@ -54,7 +54,12 @@ var customerSchema = new mongoose.Schema({
         type: String,
         default: 'your Document in Progress'
       
+    },
+    mobile: {
+        type: Number,
+       
     }
+
 },{_id: false})
 customerSchema.plugin(AutoIncrement);
 

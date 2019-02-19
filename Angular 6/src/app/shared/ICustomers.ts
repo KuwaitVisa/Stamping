@@ -11,4 +11,5 @@ export interface ICustomers {
     agentname:string;
     status:string;
     comments:string;
+    mobile:Number;
 }

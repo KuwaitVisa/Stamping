@@ -20,6 +20,8 @@
       <li> <a routerLink="/create">Create</a></li>
             <li><a routerLink="/agent">Add Agent</a></li>
             
+            <li><a routerLink="/logout">LogOut</a></li>
+            
           </ul>				      
         </div>
       </div>
@@ -27,3 +29,13 @@
 </nav>
 </div>
 <div class="container-fluid"></div>
+<script type="text/javascript">
+	$(function(){ 
+     var navMain = $(".navbar-collapse"); // avoid dependency on #id
+     // "a:not([data-toggle])" - to avoid issues caused
+     // when you have dropdown inside navbar
+     navMain.on("click", "a:not([data-toggle])", null, function () {
+         navMain.collapse('hide');
+     });
+ });
+</script>

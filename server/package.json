@@ -18,6 +18,7 @@
     "mongoose": "^5.1.2",
     "mongoose-sequence": "^4.0.1",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "springedge": "^1.0.5"
   }
 }

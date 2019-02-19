@@ -73,6 +73,31 @@ router.route('/delete/:id').get(function (req, res) {
       else res.json('Successfully removed');
   });
 });
+
+router.route('/customerBySubmissionDateNull').get(function(req, res) {
+
+        
+  Customer.find({ submissiondate: { $eq: null } },(err,customer)=> {
+    if (!customer)
+    return res.status(404).json({ status: false, message: 'customer record not found.' });
+      else
+      console.log('Customer:::'+customer);
+      return res.status(200).json({ status: true,customer });
+      
+  });
+});
+router.route('/customerBySubmissionDate').get(function(req, res) {
+
+      
+  Customer.find({ submissiondate: { $ne: null } },(err,customer)=> {
+    if (!customer)
+    return res.status(404).json({ status: false, message: 'customer record not found.' });
+      else
+      console.log('Customer:::'+customer);
+      return res.status(200).json({ status: true,customer });
+      
+  });
+});
 module.exports = router;
 
 

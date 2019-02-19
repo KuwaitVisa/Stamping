@@ -10,6 +10,7 @@ import { EditComponent } from './customer/edit/edit.component';
 import { CustomerlistComponent } from './customer/customerlist/customerlist.component';
 import { CustomerComponent } from './customer/customer/customer.component';
 import { AuthGuard } from './auth/auth.guard';
+import { LogoutComponent } from './components/user/logout/logout.component';
 
 export const appRoutes: Routes = [
     {
@@ -23,12 +24,12 @@ export const appRoutes: Routes = [
     {
         path: 'userprofile', component: UserProfileComponent,canActivate:[AuthGuard]
     },
-    {
-        path: 'customer', component: CustomerComponent,canActivate:[AuthGuard]
-    },
+    
     { path: 'create', component: CreateComponent,canActivate:[AuthGuard]
     },
     { path: 'agent', component: AgentComponent,canActivate:[AuthGuard]
+    },
+    { path: 'logout', component: LogoutComponent,canActivate:[AuthGuard]
     },
     {
         path: 'edit/:id', component: EditComponent,canActivate:[AuthGuard]
@@ -36,8 +37,9 @@ export const appRoutes: Routes = [
     {
         path: 'customerList', component: CustomerlistComponent,canActivate:[AuthGuard]
     },
+    
     {
-        path: '', redirectTo: '/customer', pathMatch: 'full'
+        path: '', redirectTo: '/login', pathMatch: 'full'
     }
 ];
 

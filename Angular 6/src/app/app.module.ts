@@ -6,7 +6,7 @@ import {CommonModule} from '@angular/common';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule,MatToolbarModule,MatSidenavModule,
+import {MatButtonModule, MatCheckboxModule,MatToolbarModule,MatSidenavModule,MatRadioModule,
 MatNativeDateModule,MatIconModule,MatListModule,MatCardModule,MatInputModule,MatDatepickerModule} from '@angular/material';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -34,6 +34,7 @@ import { CustomerComponent } from './customer/customer/customer.component';
 import { StatusComponent } from './customer/status/status.component';
 import { EditComponent } from './customer/edit/edit.component';
 import { AgentComponent } from './components/agent/agent.component';
+import { LogoutComponent } from './components/user/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AgentComponent } from './components/agent/agent.component';
     CustomerlistComponent,
     StatusComponent,
     EditComponent,
-    AgentComponent
+    AgentComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import { AgentComponent } from './components/agent/agent.component';
     MatToolbarModule,
     MatSidenavModule,
     MatNativeDateModule,
+    MatRadioModule,
     MatIconModule,
     MatListModule,
     MatCardModule,

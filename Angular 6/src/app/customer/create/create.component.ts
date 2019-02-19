@@ -43,6 +43,7 @@ export class CreateComponent implements OnInit {
       agentname: new FormControl(),
       status: new FormControl(),
       comments: new FormControl(),
+      mobile: new FormControl(),
     });
   
     this.customerService.getAgentList().subscribe(
@@ -89,6 +90,16 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    
+    for (let agent of this.agentDetails) {
+      
+      if(agent.agentName === form.value.agentname){
+
+        form.value.mobile = agent.MobileNumber;
+        console.log("form mobile Number"+form.value.mobile);
+      
+      }
+  }
     this.customerService.postCustomer(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
@@ -118,7 +129,8 @@ export class CreateComponent implements OnInit {
       priority: '',
       agentname: '',
       status: '',
-      comments:''
+      comments:'',
+      mobile:null,
     };
     form.resetForm();
     this.serverErrorMessages = '';

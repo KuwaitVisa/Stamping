@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
-
+var springedge = require('springedge');
 const Customer = mongoose.model('Customer');
+
+
 
 module.exports.customer = (req, res, next) => {
     var customer = new Customer();
@@ -12,16 +14,27 @@ module.exports.customer = (req, res, next) => {
     customer.priority = req.body.priority;
     customer.agentname = req.body.agentname;
     customer.comments = req.body.comments;
-    console.log(customer.agentname);
+    customer.mobile=req.body.mobile;
+    console.log(customer.mobile);
     customer.save((err, doc) => {
         if (!err)
             res.send(doc);
-        else {
-            if (err.code == 11000)
-                res.status(422).send(['Duplicate passportnumber entry found.']);
-            else
-                return next(err);
-        }
+            var params = {
+                'sender': 'SRINTL',
+                'apikey': '555mkk920953b044o18bzi7p6q3o5nwd2i',
+                'to': [customer.mobile  //Moblie Numbers 
+                ],
+                'message': 'Dear Customer, Your passport name ' +customer.fullName+' has been received. You can now track further process here http://srinternationaltravels.com/tracking',
+                'format': 'json'
+              };
+            springedge.messages.send(params, 5000, function (err, response) {
+                if (err) {
+                  return console.log(err);
+                }
+                console.log(response);
+              });
+
+       
 
     });
 }

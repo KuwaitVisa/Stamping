@@ -11,5 +11,6 @@ export class Customer {
     agentname:string;
     status:string;
     comments:string;
+    mobile:Number;
     
 }

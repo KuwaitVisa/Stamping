@@ -26,7 +26,8 @@ export class CustomerService {
     priority: '',
     agentname: '',
     status: '',
-    comments:''
+    comments:'',
+    mobile:null,
   };
 
   selectedAgent: Agent = {
@@ -57,8 +58,21 @@ export class CustomerService {
        
   }
     
- 
+  search(fullName , enterYour) {
 
+    
+    console.log("enterYour obj"+enterYour);
+    if (enterYour.trim() === "name".trim()) {
+      console.log("inside if");
+      return this.http.get(`${environment.apiBaseUrl+'/searchByName'}/${fullName}`);
+    }
+    else if(enterYour.trim() === "passportNumber".trim()){
+      console.log("inside else if");
+      return this.http.get(`${environment.apiBaseUrl+'/searchByPassport'}/${fullName}`);
+    }
+    
+  }
+  
   getCustomerList() {
     return this.http.get(environment.apiBaseUrl + '/customerList');
   }
