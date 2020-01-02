@@ -1,3 +1,45 @@
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
-  }
+.vertical-align{
+  display: flex;
+  align-items: center;
+}
+table {
+  width: 100%;
+  display: block;
+  overflow: auto;
+}
+
+table, th, td 
+{
+    margin: 10px 0;
+    border: solid 1px #333;
+    padding: 2px 4px;
+    font: 15px Verdana;
+}
+th {
+    font-weight:bold;
+}
+
+.tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0px 0px 0px;
+  overflow: initial;
+}
+
+.table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  border: 1px solid #ddd;
+}
+
+.table-bordered {
+  border: 0;
+}
+
+.table {
+  margin-bottom: 0;
+}

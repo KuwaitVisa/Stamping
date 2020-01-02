@@ -50,17 +50,35 @@ module.exports.customerList = (req, res, next) =>{
         }
     );
 
-    module.exports.customerById = (req, res, next) =>{
+   
+}
 
-        let id = req.params._id;
-        console.log('Controller::::'+id);
-        Customer.findById(id,
-            (err, customer) => {
-                if (!customer)
-                    return res.status(404).json({ status: false, message: 'customer record not found.' });
-                else
-                    return res.status(200).json({ status: true,customer });
-            }
-        );
-    }
+module.exports.customerById = (req, res, next) =>{
+
+    let id = req.params._id;
+    console.log('Controller::::'+id);
+    Customer.findById(id,
+        (err, customer) => {
+            if (!customer)
+                return res.status(404).json({ status: false, message: 'customer record not found.' });
+            else
+                return res.status(200).json({ status: true,customer });
+        }
+    );
+}
+
+module.exports.customerByNearDays = (req, res, next) =>{
+    var receiveDate = new Date();
+    var receiveDate1 = new Date();
+    receiveDate.setDate(receiveDate.getDate()-10);
+    //receiveDate1.setDate(receiveDate1.getDate());
+    Customer.find({receiveddate: { $lt: receiveDate }  },
+        (err, customer) => {
+            if (!customer)
+                return res.status(404).json({ status: false, message: 'customer record not found.' });
+            else
+            console.log('After update:'+customer);
+                return res.status(200).json({ status: true,customer });
+        }
+    );
 }

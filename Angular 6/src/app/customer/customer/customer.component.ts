@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, FormControl,Validators } from '@angular/forms';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { FormGroup,NgForm,FormBuilder,Validators } from '@angular/forms';
 import { ICustomers } from '../../shared/ICustomers';
 import { CustomerService } from '../../shared/customer.service';
 
@@ -10,30 +10,34 @@ import { CustomerService } from '../../shared/customer.service';
 })
 export class CustomerComponent implements OnInit {
   customerForm: FormGroup;
-  customerDetails:ICustomers[];
+  customerDetails:ICustomers;
+  serverErrorMessages: string;
+  
   constructor(private customerService: CustomerService,private fb: FormBuilder) { }
-
+  
   ngOnInit() {
 
     this.customerForm = this.fb.group({
-      fullName: ['', Validators.required ],
+      cname: ['', Validators.required ],
       enterYour: ['', Validators.required ]
    });
   }
 
-  search(fullName , enterYour): void {
-    
-    console.log("fullName"+fullName);
-    console.log("enterYour"+enterYour);
-    this.customerService.search(fullName , enterYour).subscribe(
+  search(form: NgForm): void {
+ 
+    this.customerService.search(form.value.cname , form.value.enterYour).subscribe(
       res => {
-        this.customerDetails = res['customer'];
+        this.customerDetails = (res['customer']);
         
-        console.log("Customer Details",this.customerDetails)
+        console.log("Customer Details",this.customerDetails);
+        this.customerForm.reset();
+        this.serverErrorMessages = '';
       },
       err => { 
         console.log(err);
-        
+         this.serverErrorMessages = "customer record not found";
+         
+         
       }
     );
 

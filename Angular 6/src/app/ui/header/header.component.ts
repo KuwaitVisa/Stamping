@@ -8,9 +8,16 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
+  navbarOpen = false;
+
   constructor(private router: Router) {}
 
   ngOnInit() {
   }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 
 }

@@ -6,12 +6,10 @@
             <tr class="bg-success">
             
               <th class="table-primary">Name</th>
-              <th>PassportNo</th>
+              <th class="table-primary">agentname</th>
+              
               <th class="table-primary">received</th>
               <th>submission</th>
-              <th class="table-primary">delivery</th>
-              <th>priority</th>
-              <th class="table-primary">agentname</th>
               <th>Action</th>
               <th class="table-primary">Action</th>
             </tr>
@@ -20,13 +18,9 @@
             <tr *ngFor="let customer of customerDetails | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
              
               <td class="table-primary">{{ customer.fullName }}</td>
-              <td>{{ customer.passportnumber }}</td>
+              <td class="table-primary">{{ customer.agentname }}</td>
               <td class="table-primary">{{ customer.receiveddate| date }}</td>
               <td>{{ customer.submissiondate| date  }}</td>
-              <td class="table-primary">{{ customer.deliverydate| date  }}</td>
-              <td>{{ customer.priority }}</td>
-              <td class="table-primary">{{ customer.agentname }}</td>
-             
               <td> <button class="btn btn-primary" (click)="editButtonClick(customer._id)">Edit</button> </td>
               <td><button (click)="delete(customer._id)"  class="btn btn-danger">Delete</button></td>
             </tr>

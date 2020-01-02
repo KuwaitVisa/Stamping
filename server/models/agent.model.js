@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+var AutoIncrement = require('mongoose-sequence')(mongoose);
 
 var agentSchema = new mongoose.Schema({
     
@@ -26,5 +26,5 @@ var agentSchema = new mongoose.Schema({
     }
     
 });
-
+agentSchema.plugin(AutoIncrement, {inc_field: 'id'});
 mongoose.model('Agent', agentSchema);

@@ -26,7 +26,7 @@
    </div>
    
     <div class="form-group">
-        <input type="text" #submissiondate="ngModel" [(ngModel)]="customer.submissiondate" name="submissiondate"  placeholder="Choose a submissiondate" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" 
+        <input type="text" #submissiondate="ngModel" [(ngModel)]="customer.submissiondate" name="submissiondate"  placeholder="Choose a submissiondate" class="form-control" [value]="submissiondate.value" bsDatepicker [bsConfig]="datePickerConfig" 
         required [ngClass]="{'invalid-textbox' :customerForm.submissiondate && !submissiondate.valid }">
         <div *ngIf="customerForm.submissiondate && submissiondate.errors">
           <label *ngIf="submissiondate.errors.required" class="validation-message">This field is required.</label>
@@ -35,7 +35,7 @@
    </div>
    
     <div class="form-group">
-        <input type="text" #deliverydate="ngModel" [(ngModel)]="customer.deliverydate" name="deliverydate"  placeholder="Choose a deliverydate"  class="form-control" bsDatepicker [bsConfig]="datePickerConfig" 
+        <input type="text" #deliverydate="ngModel" [(ngModel)]="customer.deliverydate" name="deliverydate"  placeholder="Choose a deliverydate"  class="form-control" [value]="deliverydate.value" bsDatepicker [bsConfig]="datePickerConfig" 
         required [ngClass]="{'invalid-textbox' :customerForm.deliverydate && !deliverydate.valid }">
         <div *ngIf="customerForm.deliverydate && deliverydate.errors">
           <label *ngIf="deliverydate.errors.required" class="validation-message">This field is required.</label>

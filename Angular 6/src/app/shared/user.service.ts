@@ -32,6 +32,9 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
 
+  getUserList() {
+    return this.http.get(environment.apiBaseUrl + '/userList');
+  }
 
   //Helper Methods
 
@@ -63,5 +66,11 @@ export class UserService {
       return userPayload.exp > Date.now() / 1000;
     else
       return false;
+  }
+
+  userdelete(id) {
+    return this
+              .http
+              .get(`${environment.apiBaseUrl+'/deleteuser'}/${id}`);
   }
 }

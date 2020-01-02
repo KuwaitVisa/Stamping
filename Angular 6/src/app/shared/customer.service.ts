@@ -70,6 +70,10 @@ export class CustomerService {
       console.log("inside else if");
       return this.http.get(`${environment.apiBaseUrl+'/searchByPassport'}/${fullName}`);
     }
+    else if(enterYour.trim() === "agentname".trim()){
+      console.log("inside else if");
+      return this.http.get(`${environment.apiBaseUrl+'/searchByAgentName'}/${fullName}`);
+    }
     
   }
   
@@ -86,25 +90,59 @@ export class CustomerService {
         .pipe(catchError(this.handleError));
 }
 
+
+
+getCustomersByNearDays(): Observable<Customer> {
+  
+  return this.http.get<Customer>(environment.apiBaseUrl + '/customerBySubmissionDateNull')
+      .pipe(catchError(this.handleError));
+}
+
 getEmployee(_id: number): Observable<Customer> {
   console.log('Service:::::'+_id);
   return this.http.get<Customer>(`${environment.apiBaseUrl+'/customerById'}/${_id}`)
       .pipe(catchError(this.handleError));
 }
 
-updateEmployee(customer, id) {
+getAgentByID(_id: number): Observable<Agent> {
+  console.log('Service:::::'+_id);
+  return this.http.get<Agent>(`${environment.apiBaseUrl+'/agentById'}/${_id}`)
+      .pipe(catchError(this.handleError));
+}
 
+updateEmployee(customer, id) {
+  console.log("customer service:"+customer);
   const obj = {
     fullName: customer.fullName,
     passportnumber: customer.passportnumber,
     submissiondate: customer.submissiondate,
     deliverydate: customer.deliverydate,
-    agentname: customer.agentname
+    agentname: customer.agentname,
+    mobile:customer.mobile,
+
   };
   this
     .http
     .post(`${environment.apiBaseUrl+'/update'}/${id}`, obj)
     .subscribe(res => console.log('Done'));
+}
+
+updateAgent(agent, id) {
+
+  const obj = {
+    agentName: agent.agentName,
+    MobileNumber: agent.MobileNumber
+  };
+  this
+    .http
+    .post(`${environment.apiBaseUrl+'/agentupdate'}/${id}`, obj)
+    .subscribe(res => console.log('Done'));
+}
+
+agentdelete(id) {
+  return this
+            .http
+            .get(`${environment.apiBaseUrl+'/agentdelete'}/${id}`);
 }
 
 delete(id) {

@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 })
 export class CustomerlistComponent implements OnInit {
   customerDetails:ICustomers[];
+ 
   displayedColumns: string[] = ['fullName', 'passportnumber', 'receiveddate','submissiondate','deliverydate','priority','agentname'];
   dataSource = new MatTableDataSource<ICustomers>(this.customerDetails);
  
@@ -20,18 +21,20 @@ export class CustomerlistComponent implements OnInit {
   constructor(private customerService: CustomerService, private _router: Router) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    
     this.customerService.getCustomerList().subscribe(
       res => {
-        this.customerDetails = res['customer'];
+        this.customerDetails = (res['customer']);
+
+        console.log("Customer Details",this.dataSource);
         
-        console.log("Customer Details",this.customerDetails)
       },
       err => { 
         console.log(err);
         
       }
     );
+    this.dataSource.paginator = this.paginator;
   }
  
   editButtonClick(employeeId: number) {

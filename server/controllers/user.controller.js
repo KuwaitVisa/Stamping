@@ -44,3 +44,15 @@ module.exports.userProfile = (req, res, next) =>{
         }
     );
 }
+
+module.exports.userList = (req, res, next) =>{
+    User.find(
+        (err, user) => {
+            if (!user)
+                return res.status(404).json({ status: false, message: 'user record not found.' });
+            else
+            console.log('After update:'+user);
+                return res.status(200).json({ status: true,user });
+        }
+    );
+}

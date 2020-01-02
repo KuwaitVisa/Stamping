@@ -11,6 +11,13 @@ import { CustomerlistComponent } from './customer/customerlist/customerlist.comp
 import { CustomerComponent } from './customer/customer/customer.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LogoutComponent } from './components/user/logout/logout.component';
+import { AgenteditComponent } from './components/agentedit/agentedit.component';
+import { AgentlistComponent } from './components/agentlist/agentlist.component';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { CsDetailsComponent } from './components/cs-details/cs-details.component';
+import { HomeComponent } from './components/home/home.component';
+import { RecentCRComponent } from './components/recent-cr/recent-cr.component';
+
 
 export const appRoutes: Routes = [
     {
@@ -35,11 +42,29 @@ export const appRoutes: Routes = [
         path: 'edit/:id', component: EditComponent,canActivate:[AuthGuard]
     },
     {
+        path: 'agentedit/:id', component: AgenteditComponent,canActivate:[AuthGuard]
+    },
+    {
+        path: 'agentList', component: AgentlistComponent,canActivate:[AuthGuard]
+    },
+    {
+        path: 'userList', component: UserlistComponent,canActivate:[AuthGuard]
+    },
+    {
+        path: 'csList', component: CsDetailsComponent,canActivate:[AuthGuard]
+    },
+    {
+        path: 'recentList', component: RecentCRComponent,canActivate:[AuthGuard]
+    },
+    {
         path: 'customerList', component: CustomerlistComponent,canActivate:[AuthGuard]
+    },
+    {
+        path: 'cshome', component: CustomerComponent
     },
     
     {
-        path: '', redirectTo: '/login', pathMatch: 'full'
+        path: '', redirectTo: '/cshome', pathMatch: 'full'
     }
 ];
 
